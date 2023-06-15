@@ -35,26 +35,17 @@ class Usuario:
 
     def emprestar_livro(self, livro):
         if livro.esta_disponivel():
-            if livro.esta_disponivel():
-                if livro.esta_disponivel():
-                    self.livros_emprestados.append(livro)
-                    livro.definir_disponibilidade(False)
-                    print(f"Livro '{livro.obter_titulo()}' emprestado para {self.nome}.")
-                else:
-                    print(f"Livro '{livro.obter_titulo()}' não está disponível.")
-            else:
-                print(f"Livro '{livro.obter_titulo()}' não está disponível.")
+            self.livros_emprestados.append(livro)
+            livro.definir_disponibilidade(False)
+            print(f"Livro '{livro.obter_titulo()}' emprestado para {self.nome}.")
         else:
             print(f"Livro '{livro.obter_titulo()}' não está disponível.")
 
     def devolver_livro(self, livro):
         if livro in self.livros_emprestados:
-            if livro in self.livros_emprestados:
-                self.livros_emprestados.remove(livro)
-                livro.definir_disponibilidade(True)
-                print(f"Livro '{livro.obter_titulo()}' devolvido por {self.nome}.")
-            else:
-                print(f"Livro '{livro.obter_titulo()}' não foi emprestado por {self.nome}.")
+            self.livros_emprestados.remove(livro)
+            livro.definir_disponibilidade(True)
+            print(f"Livro '{livro.obter_titulo()}' devolvido por {self.nome}.")
         else:
             print(f"Livro '{livro.obter_titulo()}' não foi emprestado por {self.nome}.")
 
@@ -73,19 +64,15 @@ class Biblioteca:
 
     def remover_livro(self, livro):
         if livro in self.livros:
-            if livro in self.livros:
-                self.livros.remove(livro)
-                print(f"Livro '{livro.obter_titulo()}' removido da biblioteca.")
-            else:
-                print(f"Livro '{livro.obter_titulo()}' não está na biblioteca.")
+            self.livros.remove(livro)
+            print(f"Livro '{livro.obter_titulo()}' removido da biblioteca.")
         else:
             print(f"Livro '{livro.obter_titulo()}' não está na biblioteca.")
 
     def buscar_livro(self, titulo):
         for livro in self.livros:
             if livro.obter_titulo() == titulo:
-                if livro.obter_titulo() == titulo:
-                    return livro
+                return livro
         return None
 
     def adicionar_usuario(self, usuario):
@@ -97,19 +84,15 @@ class Biblioteca:
 
     def remover_usuario(self, usuario):
         if usuario in self.usuarios:
-            if usuario in self.usuarios:
-                self.usuarios.remove(usuario)
-                print(f"Usuário '{usuario.obter_nome()}' removido da biblioteca.")
-            else:
-                print(f"Usuário '{usuario.obter_nome()}' não está registrado na biblioteca.")
+            self.usuarios.remove(usuario)
+            print(f"Usuário '{usuario.obter_nome()}' removido da biblioteca.")
         else:
             print(f"Usuário '{usuario.obter_nome()}' não está registrado na biblioteca.")
 
     def buscar_usuario(self, nome):
         for usuario in self.usuarios:
             if usuario.obter_nome() == nome:
-                if usuario.obter_nome() == nome:
-                    return usuario
+                return usuario
         return None
 
 
