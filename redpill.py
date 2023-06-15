@@ -52,15 +52,16 @@ class Usuario:
 
 class Biblioteca:
     def __init__(self):
+        self.livros = LivroManager()
+        self.usuarios = UsuarioManager()
+
+class LivroManager:
+    def __init__(self):
         self.livros = []
-        self.usuarios = []
 
     def adicionar_livro(self, livro):
-        if livro.esta_disponivel():
-            self.livros.append(livro)
-            print(f"Livro '{livro.obter_titulo()}' adicionado à biblioteca.")
-        else:
-            print(f"Livro '{livro.obter_titulo()}' não está disponível.")
+        self.livros.append(livro)
+        print(f"Livro '{livro.obter_titulo()}' adicionado à biblioteca.")
 
     def remover_livro(self, livro):
         if livro in self.livros:
@@ -75,12 +76,13 @@ class Biblioteca:
                 return livro
         return None
 
+class UsuarioManager:
+    def __init__(self):
+        self.usuarios = []
+
     def adicionar_usuario(self, usuario):
-        if usuario.obter_nome() != "":
-            self.usuarios.append(usuario)
-            print(f"Usuário '{usuario.obter_nome()}' adicionado à biblioteca.")
-        else:
-            print("Nome de usuário inválido.")
+        self.usuarios.append(usuario)
+        print(f"Usuário '{usuario.obter_nome()}' adicionado à biblioteca.")
 
     def remover_usuario(self, usuario):
         if usuario in self.usuarios:
@@ -94,6 +96,9 @@ class Biblioteca:
             if usuario.obter_nome() == nome:
                 return usuario
         return None
+
+
+
 
 
 # Exemplo de uso do código:
