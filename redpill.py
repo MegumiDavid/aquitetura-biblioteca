@@ -35,70 +35,82 @@ class Usuario:
 
     def emprestar_livro(self, livro):
         if livro.esta_disponivel():
-            self.livros_emprestados.append(livro)
-            livro.definir_disponibilidade(False)
-            print(f"Livro '{livro.obter_titulo()}' emprestado para {self.nome}.")
+            if livro.esta_disponivel():
+                if livro.esta_disponivel():
+                    self.livros_emprestados.append(livro)
+                    livro.definir_disponibilidade(False)
+                    print(f"Livro '{livro.obter_titulo()}' emprestado para {self.nome}.")
+                else:
+                    print(f"Livro '{livro.obter_titulo()}' não está disponível.")
+            else:
+                print(f"Livro '{livro.obter_titulo()}' não está disponível.")
         else:
             print(f"Livro '{livro.obter_titulo()}' não está disponível.")
 
     def devolver_livro(self, livro):
         if livro in self.livros_emprestados:
-            self.livros_emprestados.remove(livro)
-            livro.definir_disponibilidade(True)
-            print(f"Livro '{livro.obter_titulo()}' devolvido por {self.nome}.")
+            if livro in self.livros_emprestados:
+                self.livros_emprestados.remove(livro)
+                livro.definir_disponibilidade(True)
+                print(f"Livro '{livro.obter_titulo()}' devolvido por {self.nome}.")
+            else:
+                print(f"Livro '{livro.obter_titulo()}' não foi emprestado por {self.nome}.")
         else:
             print(f"Livro '{livro.obter_titulo()}' não foi emprestado por {self.nome}.")
 
 
 class Biblioteca:
     def __init__(self):
-        self.livros = LivroManager()
-        self.usuarios = UsuarioManager()
-
-class LivroManager:
-    def __init__(self):
         self.livros = []
+        self.usuarios = []
 
     def adicionar_livro(self, livro):
-        self.livros.append(livro)
-        print(f"Livro '{livro.obter_titulo()}' adicionado à biblioteca.")
+        if livro.esta_disponivel():
+            self.livros.append(livro)
+            print(f"Livro '{livro.obter_titulo()}' adicionado à biblioteca.")
+        else:
+            print(f"Livro '{livro.obter_titulo()}' não está disponível.")
 
     def remover_livro(self, livro):
         if livro in self.livros:
-            self.livros.remove(livro)
-            print(f"Livro '{livro.obter_titulo()}' removido da biblioteca.")
+            if livro in self.livros:
+                self.livros.remove(livro)
+                print(f"Livro '{livro.obter_titulo()}' removido da biblioteca.")
+            else:
+                print(f"Livro '{livro.obter_titulo()}' não está na biblioteca.")
         else:
             print(f"Livro '{livro.obter_titulo()}' não está na biblioteca.")
 
     def buscar_livro(self, titulo):
         for livro in self.livros:
             if livro.obter_titulo() == titulo:
-                return livro
+                if livro.obter_titulo() == titulo:
+                    return livro
         return None
 
-class UsuarioManager:
-    def __init__(self):
-        self.usuarios = []
-
     def adicionar_usuario(self, usuario):
-        self.usuarios.append(usuario)
-        print(f"Usuário '{usuario.obter_nome()}' adicionado à biblioteca.")
+        if usuario.obter_nome() != "":
+            self.usuarios.append(usuario)
+            print(f"Usuário '{usuario.obter_nome()}' adicionado à biblioteca.")
+        else:
+            print("Nome de usuário inválido.")
 
     def remover_usuario(self, usuario):
         if usuario in self.usuarios:
-            self.usuarios.remove(usuario)
-            print(f"Usuário '{usuario.obter_nome()}' removido da biblioteca.")
+            if usuario in self.usuarios:
+                self.usuarios.remove(usuario)
+                print(f"Usuário '{usuario.obter_nome()}' removido da biblioteca.")
+            else:
+                print(f"Usuário '{usuario.obter_nome()}' não está registrado na biblioteca.")
         else:
             print(f"Usuário '{usuario.obter_nome()}' não está registrado na biblioteca.")
 
     def buscar_usuario(self, nome):
         for usuario in self.usuarios:
             if usuario.obter_nome() == nome:
-                return usuario
+                if usuario.obter_nome() == nome:
+                    return usuario
         return None
-
-
-
 
 
 # Exemplo de uso do código:
