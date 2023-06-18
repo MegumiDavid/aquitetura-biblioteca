@@ -7,7 +7,6 @@ class Usuario:
         
         self._nome = nome
         self._email = email
-        self._livros_emprestados = []
 
     @property
     def nome(self) -> str:

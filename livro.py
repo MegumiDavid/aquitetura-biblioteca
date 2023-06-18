@@ -10,7 +10,6 @@ class Livro:
         self._titulo = titulo
         self._autor = autor
         self._ano_publicacao = ano_publicacao
-        self._disponivel = True
 
     @property
     def titulo(self) -> str:

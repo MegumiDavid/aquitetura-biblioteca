@@ -15,44 +15,37 @@ usuario2 = Usuario("Bob", "bob@example.com")
 biblioteca = Biblioteca()
 
 # Adicionar livros à biblioteca
-# Verifica se foi possivel adicionar o livro na biblioteca
-livro1_foi_adicionado = biblioteca.livros.adicionar_item(livro1)
-if (livro1_foi_adicionado): 
-     print(f'Livro {livro1.titulo} adicionado')
-else:
-     print(f'Nao foi possivel adicionar o livro {livro1.titulo}')
-
-livro2_foi_adicionado = biblioteca.livros.adicionar_item(livro2)
-if (livro2_foi_adicionado): 
-     print(f'Livro {livro2.titulo} adicionado')
-else:
-     print(f'Nao foi possivel adicionar o livro {livro2.titulo}')
+biblioteca.livros.adicionar_item(livro1)
+biblioteca.livros.adicionar_item(livro2)
 
 # Adicionar usuários à biblioteca
-biblioteca.adicionar_usuario(usuario1)
-biblioteca.adicionar_usuario(usuario2)
+biblioteca.usuarios.adicionar_item(usuario1)
+biblioteca.usuarios.adicionar_item(usuario2)
 
 # Empréstimo de livro
-usuario1.emprestar_livro(livro1)
+biblioteca.emprestar_livro(livro1, usuario1)
 
 # Tentativa de empréstimo de livro indisponível
-usuario2.emprestar_livro(livro1)
+try:
+    biblioteca.emprestar_livro(livro2, usuario2)
+except Exception as e:
+    print("An exception occurred:", str(e))
 
 # Devolução de livro
-usuario1.devolver_livro(livro1)
+biblioteca.devolver_livro(livro1, usuario1)
 
 # Remoção de livro
-biblioteca.remover_livro(livro2)
+biblioteca.livros.remover_item(livro2)
 
 # Remoção de usuário
-biblioteca.remover_usuario(usuario2)
+biblioteca.usuarios.remover_item(usuario2)
 
 # Busca de livro e usuário
-livro_encontrado = biblioteca.buscar_livro("Python para Iniciantes")
-usuario_encontrado = biblioteca.buscar_usuario("Alice")
+livro_encontrado = biblioteca.livros.buscar_item(livro1)
+usuario_encontrado = biblioteca.usuarios.buscar_item(usuario1)
 
 # Exemplo de uso dos métodos de acesso
 if livro_encontrado:
-    print(livro_encontrado.obter_titulo())
+    print(livro_encontrado.titulo)
 if usuario_encontrado:
-    print(usuario_encontrado.obter_nome())
+    print(usuario_encontrado.nome)
